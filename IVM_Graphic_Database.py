@@ -1,4 +1,5 @@
 # IVM Graphic Database
+$ pip install matplotlib
 
 # Importeren van basis bibliotheken
 import streamlit as st
