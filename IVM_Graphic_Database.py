@@ -23,6 +23,7 @@ import cv2
 import os
 import scipy
 import streamlit as st
+from pathlib import Path
 
 # Uploaden van bestanden en deze opslaan in de map
 col1, _ = st.columns([2, 1])
@@ -39,8 +40,12 @@ with col1:
         file_details = {"filename":image_file.name, "filetype":image_file.type, "filesize":image_file.size}
         st.write(file_details)
         st.image(load_image(image_file), width=250)
-    
-        with open(os.path.join("C:\\Users\\loisg\\OneDrive - Windesheim Office365\\Leerjaar 3\\Minor - Big Data & Design\\Block 3\\dataset\\",image_file.name),"wb") as f:
+        
+        dirname = Path.cwd()
+        filep = os.path.join(dirname,image_file.name)
+        
+        
+        with open(filep,"wb") as f:
             f.write((image_file).getbuffer())
         
             origineel = st.checkbox('This assignment submission is my own, original work.')
@@ -58,7 +63,7 @@ with col1:
             st.success("File Saved")
               
 # Plagiaatcontrole uitvoeren
-IMAGE_DIR = 'C:\\Users\\loisg\\OneDrive - Windesheim Office365\\Leerjaar 3\\Minor - Big Data & Design\\Block 3\\dataset\\'
+IMAGE_DIR = dirname
 
 os.chdir(IMAGE_DIR)
 os.getcwd()
